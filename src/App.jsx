@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import Trending from "./trending";
-import Popular from "./popular";
+import Trending from "./components/trending";
+import Popular from "./components/popular";
 import { useState } from "react";
 import "./App.css";
 
