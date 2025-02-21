@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import "./trending.css";
 
 const Trending = () => {
@@ -19,7 +20,9 @@ const Trending = () => {
           <div className="video-card" key={index}>
             <img className="thumbnail" src={`http://localhost:3000${video.videoThumbnails[1].url}`}></img>
             <div className="video-title">{video.title}</div>
-            <div className="video-author">{video.author}</div>
+            <Link to={`/author/${encodeURIComponent(video.authorId)}`} className="video-author">
+              {video.author}
+            </Link>
             <div className="video-time">{video.publishedText}</div>
           </div>
         ))}
