@@ -18,8 +18,14 @@ const Trending = () => {
       <div className="trending-container">
         {videos.map((video, index) => (
           <div className="video-card" key={index}>
-            <img className="thumbnail" src={`http://localhost:3000${video.videoThumbnails[1].url}`}></img>
-            <div className="video-title">{video.title}</div>
+            <Link to={`/video/${encodeURIComponent(video.videoId)}`}>
+              <img
+                className="thumbnail"
+                src={`http://localhost:3000${video.videoThumbnails[1].url}`}
+                alt={video.title}
+              />
+              <div className="video-title">{video.title}</div>
+            </Link>
             <Link to={`/author/${encodeURIComponent(video.authorId)}`} className="video-author">
               {video.author}
             </Link>

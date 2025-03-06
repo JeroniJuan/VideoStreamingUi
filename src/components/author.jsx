@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import "./author.css";
 
 const Author = () => {
@@ -13,16 +13,14 @@ const Author = () => {
       .then((data) => setAuthorData(data))
       .catch((error) => console.error("Error fetching author data:", error));
 
-      fetch(`http://localhost:3000/api/v1/channels/${authorId}/videos`)
+    fetch(`http://localhost:3000/api/v1/channels/${authorId}/videos`)
       .then((response) => response.json())
       .then((data) => {
         console.log("Videos data:", data);
-    
-        const videosList = data?.videos || []; 
+        const videosList = data?.videos || [];
         setVideos(videosList);
       })
       .catch((error) => console.error("Error fetching author videos:", error));
-    
   }, [authorId]);
 
   if (!authorData) return <p>Loading author details...</p>;
@@ -43,12 +41,14 @@ const Author = () => {
         {videos.length > 0 ? (
           videos.map((video, index) => (
             <div className="video-card" key={index}>
-              <img
-                className="thumbnail"
-                src={`http://localhost:3000${video.videoThumbnails?.[1]?.url}`}
-                alt={video.title}
-              />
-              <div className="video-title">{video.title}</div>
+              <Link to={`/video/${encodeURIComponent(video.videoId)}`}>
+                <img
+                  className="thumbnail"
+                  src={`http://localhost:3000${video.videoThumbnails?.[1]?.url}`}
+                  alt={video.title}
+                />
+                <div className="video-title">{video.title}</div>
+              </Link>
             </div>
           ))
         ) : (
