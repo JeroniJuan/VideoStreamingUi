@@ -5,6 +5,7 @@ import Popular from "./components/popular";
 import SearchResults from "./components/searchResults";
 import Author from "./components/author";
 import VideoDetail from "./components/VideoDetail";
+import Playlist from "./components/Playlist";
 import { useState } from "react";
 import "./App.css";
 
